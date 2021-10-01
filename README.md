@@ -23,8 +23,7 @@ $ ./gradlew build -x test
       - [paas-ta-container-platform-pipeline-api](pipeline/paas-ta-container-platform-pipeline-api)
       - [paas-ta-container-platform-pipeline-common-api](pipeline/paas-ta-container-platform-pipeline-common-api)
       - [paas-ta-container-platform-pipeline-ui](pipeline/paas-ta-container-platform-pipeline-ui)
-  + 컨테이너 플랫폼 서비스 브로커
-      - [paas-ta-container-platform-pipeline-service-broker](service-broker/paas-ta-container-platform-pipeline-service-broker)    
+      - [paas-ta-container-platform-pipeline-service-broker](pipeline/paas-ta-container-platform-pipeline-broker)    
 
 <br>
 
@@ -48,7 +47,7 @@ COPY application.yml /application.yml
 ENTRYPOINT ["java","-jar","-Dspring.config.location=application.yml","-Dspring.profiles.active=prod","/container-platform-pipeline-api.jar"]
 ```
 - 이미지 생성
-  + {HAProxy_IP} : BOSH Inception에 배포된 Deployment <b>'container-platform-pipeline'</b> 의 haproxy public ip 입력
+  + {HAProxy_IP} : BOSH Inception에 배포된 Deployment <b>'container-platform'</b> 의 haproxy public ip 입력
 ```
 $ sudo docker build --tag {HAProxy_IP}:5001/container-platform/container-platform-pipeline-api:latest .
 ```
@@ -62,7 +61,7 @@ xx.xxx.xxx.xx:5001/container-platform/container-platform-pipeline-api          l
 
 <br>
 
-### 컨테이너 플랫폼 이미지 Private Repository 업로드 방법
+### 파이프라인 이미지 Private Repository 업로드 방법
 > Docker를 기준으로 진행한다.
 
 - Docker daemon.json 파일 내 insecure-registries 설정에 Private Repository Url 추가 후 Docker를 재시작한다.
