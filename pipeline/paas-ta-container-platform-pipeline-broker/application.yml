@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: paas-ta-container-platform-pipeline-service-broker
+---
+spring:
+  profiles:
+    active: prod
+  primary:
+    datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mysql://${HAPROXY_IP}:${MARIADB_PORT}/pipeline_broker?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
+      username: ${MARIADB_USER_ID}
+      password: ${MARIADB_USER_PASSWORD}
+      pool-name: "Broker-DB"
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    database: "mysql"
+    show-sql: true
+
+server:
+  port: ${PORT:8083}
+
+cf:
+  api:
+    url: ${CF_API_URL}
+
+logging:
+  level:
+    ROOT:
+      org:
+        openpaas:
+          servicebroker:
+            controller: INFO
+        paasta:
+          servicebroker:
+            deliverypipeline:
+              service: INFO
+
+service:
+  dashboard:
+    url: ${DASHBOARD_URI}
+
+paasta:
+  delivery:
+    pipeline:
+      api:
+        url: ${CONTAINER_PLATFORM_PIPELINE_API_URI}
+        username: admin
+        password: PaaS-TA
+ci:
+  server:
+    shared:
+      urls: '["${CI_SERVER_URI}"]'
+serviceDefinition:
+  id: af86588c-6212-11e7-907b-b6006ad3dps0
+  name: delivery-pipeline
+  desc: "A paasta source control service for application development.provision parameters : parameters {owner : owner}"
+  bindable: false
+  planupdatable: false
+  plan1:
+    id: a5930564-6212-11e7-907b-b6006ad3dps1
+    name: delivery-pipeline-shared
+    desc: "This is a shared service plan. All services are created equally."
+    type: A

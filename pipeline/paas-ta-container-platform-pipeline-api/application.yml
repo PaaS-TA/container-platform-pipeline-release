@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: paas-ta-container-platform-pipeline-api
+  http:
+    multipart:
+      maxFileSize: 1000Mb
+      maxRequestSize: 1000Mb
+---
+spring:
+  profiles:
+    active: prod
+
+server:
+  port: 8082
+
+logging:
+  level:
+    ROOT: INFO
+  path: classpath:logback-spring.xml
+  file: logs/application.log
+
+commonApi:
+  url: http://${CONTAINER_PLATFORM_PIPELINE_COMMON_API_URI}
+  authorization:
+    id: "admin"
+    password: "PaaS-TA"
+
+inspectionApi:
+  url: ${CONTAINER_PLATFORM_PIPELINE_INSPECTION_API_URI}
+  authorization:
+    id: "admin"
+    password: "PaaS-TA@2021"
+
+ci:
+  server:
+    credentials:
+      scope: "GLOBAL"
+      url: /credentials/store/system/domain/_
+      className: "com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl"
+
+harbor:
+  server:
+    api:
+      url: "${HARBOR_API_URI}"
+    admin:
+      username: admin
+      password: "PaaS-TA@2021"
+delivery:
+  pipelineUI:
+    log:
+      url: ${CONTAINER_PLATFORM_PIPELINE_UI_URI}/dashboard/{SERVICE_INSTANCE_ID}/pipelines/{PIPELINE_ID}/jobs/{JOB_ID}/{JOB_TYPE}
+keycloak:
+  admin:
+    api:
+      url: ${KEYCLOAK_URI}
+      grant:
+        type: password
+      username: admin
+      password: "PaaS-TA@2021"
+      client:
+        id: admin-cli
+    token:
+      url: "/realms/master/protocol/openid-connect/token"
+    users:
+      url: "/admin/realms/{realms}/users"
