@@ -23,8 +23,8 @@ $ ./gradlew build -x test
       - [paas-ta-container-platform-pipeline-api](pipeline/paas-ta-container-platform-pipeline-api)
       - [paas-ta-container-platform-pipeline-common-api](pipeline/paas-ta-container-platform-pipeline-common-api)
       - [paas-ta-container-platform-pipeline-ui](pipeline/paas-ta-container-platform-pipeline-ui)
-      - [paas-ta-container-platform-pipeline-service-broker](pipeline/paas-ta-container-platform-pipeline-broker)    
-
+      - [paas-ta-container-platform-pipeline-broker](pipeline/paas-ta-container-platform-pipeline-broker)    
+      - [paas-ta-contianer-platform-pipeline-inspection-api](pipeline/paas-ta-container-platform-pipeline-inspection-api)
 <br>
 
 > 'container-platform-pipeline-api'를 예시로 진행한다.

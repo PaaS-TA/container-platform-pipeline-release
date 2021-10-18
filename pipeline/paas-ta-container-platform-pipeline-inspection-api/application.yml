@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: paas-ta-container-platform-pipeline-inspection-api
+  http:
+    multipart:
+      maxFileSize: 1000Mb
+      maxRequestSize: 1000Mb
+
+---
+spring:
+  profiles:
+    active: prod
+
+server:
+  port: 8085
+
+logging:
+  level:
+    ROOT: INFO
+  path: classpath:logback-spring.xml
+  file: logs/application.log
+
+inspection:
+  server:
+    url: ${INSPECTION_SERVER_URI}
+    admin:
+      username: admin
+      password: admin
+
+commonApi:
+  url: ${CONTAINER_PLATFORM_PIPELINE_COMMON_API_URI}
+  authorization:
+    id: admin
+    password: PaaS-TA
