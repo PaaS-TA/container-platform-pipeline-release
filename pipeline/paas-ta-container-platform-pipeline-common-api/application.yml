@@ -66,7 +66,7 @@ logging:
   path: classpath:logback-spring.xml
   file: logs/application.log
 deliveryPipelineApi:
-  url: http://${CONTAINER_PLATFORM_PIPELINE_API_URI}:8082
+  url: ${CONTAINER_PLATFORM_PIPELINE_API_URI}
   authorization:
     id: "admin"
     password: "PaaS-TA"

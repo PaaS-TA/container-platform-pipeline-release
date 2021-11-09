@@ -43,8 +43,8 @@ harbor:
     api:
       url: "${HARBOR_API_URI}"
     admin:
-      username: admin
-      password: "PaaS-TA@2021"
+      username: "${HARBOR_ADMIN_USER}"
+      password: "${HARBOR_ADMIN_PASSWORD}"
 delivery:
   pipelineUI:
     log:

@@ -17,7 +17,7 @@ spring:
 server:
   port: ${PORT:8084}
   error:
-    whitelabel:1
+    whitelabel:
     enabled: false
 
 logging:
@@ -47,16 +47,16 @@ inspectionApi:
 keycloak:
   oauth:
     info:
-      uri: ${KEYKCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/userinfo
+      uri: ${KEYCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/userinfo
     token:
       check:
-        uri: ${KEYKCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/token/introspect
+        uri: ${KEYCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/token/introspect
       access:
-        uri: ${KEYKCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/token
+        uri: ${KEYCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/token
     logout:
-      url: ${KEYKCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/logout
+      url: ${KEYCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/logout
     authorization:
-      uri: ${KEYKCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/auth
+      uri: ${KEYCLOAK_URI}/auth/realms/cp-realm/protocol/openid-connect/auth
     client:
       id: {KEYCLOAK_CLIENT_ID}
       secret: ${KEYCLOAK_SECRET_ID}
