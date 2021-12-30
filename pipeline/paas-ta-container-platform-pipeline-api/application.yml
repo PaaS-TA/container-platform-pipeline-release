@@ -20,7 +20,7 @@ logging:
   file: logs/application.log
 
 commonApi:
-  url: http://${CONTAINER_PLATFORM_PIPELINE_COMMON_API_URI}
+  url: ${CONTAINER_PLATFORM_PIPELINE_COMMON_API_URI}
   authorization:
     id: "admin"
     password: "PaaS-TA"
@@ -29,7 +29,7 @@ inspectionApi:
   url: ${CONTAINER_PLATFORM_PIPELINE_INSPECTION_API_URI}
   authorization:
     id: "admin"
-    password: "PaaS-TA@2021"
+    password: "PaaS-TA"
 
 ci:
   server:
@@ -41,7 +41,7 @@ ci:
 harbor:
   server:
     api:
-      url: "${HARBOR_API_URI}"
+      url: "${HARBOR_API_URL}"
     admin:
       username: "${HARBOR_ADMIN_USER}"
       password: "${HARBOR_ADMIN_PASSWORD}"
@@ -52,11 +52,11 @@ delivery:
 keycloak:
   admin:
     api:
-      url: ${KEYCLOAK_URI}
+      url: ${KEYCLOAK_URL}
       grant:
         type: password
-      username: admin
-      password: "PaaS-TA@2021"
+      username: ${KEYCLOAK_ADMIN_ID}
+      password: ${KEYCLOAK_ADMIN_PASSWORD}
       client:
         id: admin-cli
     token:

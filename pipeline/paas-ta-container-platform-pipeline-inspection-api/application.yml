@@ -22,10 +22,10 @@ logging:
 
 inspection:
   server:
-    url: ${INSPECTION_SERVER_URI}
+    url: ${INSPECTION_SERVER_URL}
     admin:
-      username: admin
-      password: admin
+      username: ${INSPECTION_ADMIN_ID}
+      password: ${INSPECTION_ADMIN_PASSWORD}
 
 commonApi:
   url: ${CONTAINER_PLATFORM_PIPELINE_COMMON_API_URI}

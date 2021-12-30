@@ -3,53 +3,22 @@ spring:
     name: paas-ta-container-platform-pipeline-common-api
 ---
 spring:
-  profiles:  local
-  datasource:
-    pipeline:
-      jdbc-url: jdbc:mysql://${HAPROXY_IP}:${MARIADB_PORT}/delivery_pipeline?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
-      username: ${MARIADB_USER_ID}
-      password: ${MARIADB_USER_PASSWORD}
-      driver-class-name: org.mariadb.jdbc.Driver
-    broker:
-      jdbc-url: jdbc:mysql://${HAPROXY_IP}:${MARIADB_PORT}/pipeline_broker?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
-      username: ${MARIADB_USER_ID}
-      password: ${MARIADB_USER_PASSWORD}
-      driver-class-name: org.mariadb.jdbc.Driver
-  jpa:
-    database: mysql
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-      naming:
-        strategy: org.hibernate.cfg.EJB3NamingStrategy
-    generate-ddl: false
-server:
-  port: 8081
-logging:
-  level:
-    ROOT: INFO
-  path: classpath:logback-spring.xml
-  file: logs/application.log
-deliveryPipelineApi:
-  url: http://deliverypipeline-api-deployment.pipeline.svc.cluster.local:8082
-  authorization:
-    id: "admin"
-    password: "PaaS-TA"
----
-spring:
   profiles:
     active: prod
   datasource:
     pipeline:
-      jdbc-url: jdbc:mysql://${HAPROXY_IP}:${MARIADB_PORT}/delivery_pipeline?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
-      username: ${MARIADB_USER_ID}
-      password: ${MARIADB_USER_PASSWORD}
+      jdbc-url: jdbc:mysql://${DATABASE_URL}/delivery_pipeline?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
+      username: ${DATABASE_USER_ID}
+      password: ${DATABASE_USER_PASSWORD}
       driver-class-name: org.mariadb.jdbc.Driver
     broker:
-      jdbc-url: jdbc:mysql://${HAPROXY_IP}:${MARIADB_PORT}/pipeline_broker?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
-      username: ${MARIADB_USER_ID}
-      password: ${MARIADB_USER_PASSWORD}
+      jdbc-url: jdbc:mysql://${DATABASE_URL}/pipeline_broker?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
+      username: ${DATABASE_USER_ID}
+      password: ${DATABASE_USER_PASSWORD}
       driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      connection-timeout: 10000
+      max-lifetime: 700000
   jpa:
     database: mysql
     show-sql: true
