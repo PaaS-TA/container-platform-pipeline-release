@@ -16,6 +16,10 @@ spring:
 
 server:
   port: ${PORT:8084}
+  servlet:
+    session:
+      cookie:
+        name: PIPELINESESSION
 
 logging:
   level:
